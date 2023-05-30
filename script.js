@@ -1,1 +1,47 @@
-//your JS code here. If required.
+// //your JS code here. If required.
+
+const output = document.getElementById('output');
+const loading = document.getElementById('loading');
+
+const promises = [];
+
+for(let i=0; i<3; i++){
+	promises.push(new Promise(function(resolve, reject) {
+
+		let randomNubmer = Math.floor(Math.random() * 3) +1;
+      
+		setTimeout(function () {
+			resolve(randomNubmer);
+		}, ((i+1) *1000));
+	}));
+}
+  
+Promise.all(promises).then(function (results) {
+	let totalTime = results.reduce(function (a, b) {
+		return a+b;
+	}, 0);
+	
+	loading.remove();
+	let i = 0;
+	for(i=0; i < results.length; i++) {
+		const row = output.insertRow(-1);
+		const col1 = row.insertCell(0);
+		const col2 = row.insertCell(1);
+		col1.innerText = "Promise " + (i+1);
+		col2.innerText = parseInt(results[i]);
+	}
+
+	if(i === 3){
+		const row = output.insertRow(-1);
+		const col1 = row.insertCell(0);
+		const col2 = row.insertCell(1);
+		col1.innerText = "Total";
+		col2.innerText = totalTime;
+	}
+});
+ 
+
+
+
+
+
