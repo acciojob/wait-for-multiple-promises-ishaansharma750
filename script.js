@@ -2,6 +2,11 @@
 
 const output = document.getElementById('output');
 const loading = document.getElementById('loading');
+// const row = output.insertRow(-1);
+// const col1 = row.insertCell(0);
+// const col2 = row.insertCell(1);
+// col1.innerText = "Loading...";
+// col2.innerText = "Loading..."; 
 
 const promises = [];
 
@@ -40,6 +45,8 @@ Promise.all(promises).then(function (results) {
 	}
 });
  
+
+
 
 
 
